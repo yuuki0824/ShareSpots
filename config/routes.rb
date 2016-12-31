@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+  get 'users/show'
+
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
+            controllers: { :omniauth_callbacks => "users/omniauth_callbacks" }
   root to: 'static_pages#home'
   get 'about' => 'static_pages#about'
+  #get 'users/:id', to: 'users#show', as: "user"
+  resources :users, only: [:index,:show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
