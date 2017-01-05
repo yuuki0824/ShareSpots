@@ -25,6 +25,15 @@
       <%= f.text_area :description %>
     </div>
     
+    <div class="field">
+      <% if @spot.image? %>
+        <%= image_tag @spot.image_url %>
+      <% end %><br>
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+    </div>
+    
     <%= f.submit "add", class: "btn btn-primary" %>
   <% end %> 
 <% end %>

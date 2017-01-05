@@ -1,3 +1,13 @@
 // Place all the styles related to the Spots controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.spot-show {
+  margin: 15px 0 50px 0;
+}
+
+.spot-item .image #img{
+  max-width: 450px;
+  max-height: 450px;
+}

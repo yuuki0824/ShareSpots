@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170102125431) do
+ActiveRecord::Schema.define(version: 20170105160930) do
 
   create_table "spots", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170102125431) do
     t.decimal  "longitude",   precision: 10, scale: 6
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.string   "image"
   end
 
   add_index "spots", ["user_id", "created_at"], name: "index_spots_on_user_id_and_created_at"

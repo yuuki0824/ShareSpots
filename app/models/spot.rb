@@ -21,4 +21,6 @@ class Spot < ActiveRecord::Base
   validates :user_id, presence: true
   validates :description, presence: true
   
+  mount_uploader :image, ImageUploader
+  
 end

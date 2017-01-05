@@ -1,0 +1,15 @@
+<div class="row">
+  <h1>Spots</h1>
+  
+  <div class="col-md-3"></div>
+  <div class="col-md-9">
+    <% @spots.each do |spot| %>
+     <p class="spot-guide">
+       <%= link_to spot_path(spot.id) do %>
+         <%= image_tag spot.image.url, id: "img", style: "max-width: 100px; max-heiht: 100px" %>
+         <%= spot.name %>
+       <% end %>
+      </p>
+    <% end %>
+  </div>
+</div>

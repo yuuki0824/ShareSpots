@@ -1,6 +1,10 @@
 class SpotsController < ApplicationController
   before_action :user_signed_in?, only: [:create]
   
+  def index
+    @spots = Spot.all.order(created_at: :desc)
+  end
+  
   def create
     @spot = current_user.spots.build(spot_params)
     if @spot.save
@@ -21,10 +25,18 @@ class SpotsController < ApplicationController
     end
   end
   
+  def destroy
+    @spot = current_user.spots.find_by(id: params[:id])
+    return redirect_to root_url if @spot.nil?
+    @spot.destroy
+    flash[:success] = "Spot deleted"
+    redirect_to user_path(current_user.id)
+  end
+  
   private
   
     def spot_params
-      params.require(:spot).permit(:name, :date, :address, :description)
+      params.require(:spot).permit(:name, :date, :address, :description, :image)
     end
       
 end
