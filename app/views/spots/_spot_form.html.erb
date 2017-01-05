@@ -1,0 +1,30 @@
+ <% if user_signed_in? %>
+  <%= form_for @spot do |f| %>
+    <div class="field">
+      <%= f.label :name  %>
+      <%= f.text_field :name, autofocus: true %>
+    </div>
+    
+    <div class="field">
+      <div class='input-group date datepicker'>
+        <%= f.label :date %>
+        <%= f.text_field :date, class: 'form-control' %>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+    </div>
+    
+    <div class="field">
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+    
+    <%= f.submit "add", class: "btn btn-primary" %>
+  <% end %> 
+<% end %>

@@ -14,4 +14,20 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
+// マーカークラスターの読み込み
+// download here! 
+// https://github.com/googlemaps/js-marker-clusterer
+//= reqire markerclusterer_compiled 
+//= require moment
+//= require bootstrap-datetimepicker
+//= require underscore
+//= require gmaps/google
 //= require_tree .
+
+
+
+  var data = {'data-date-format': 'YYYY-MM-DD hh:mm:ss' };
+  $(function(){
+    $('.datepicker').attr(data);
+    $('.datepicker').datetimepicker();
+  });

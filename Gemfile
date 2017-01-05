@@ -26,6 +26,11 @@ gem 'bootstrap-sass'
 gem 'annotate'
 gem 'devise'
 gem 'omniauth-twitter'
+gem "gmaps4rails"
+gem "geocoder"
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

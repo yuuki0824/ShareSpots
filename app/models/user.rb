@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :spots
   validates :name, length: {maximum: 50}
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable
@@ -72,7 +73,6 @@ end
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  name                   :string
-#  age                    :string
-#  graduate               :string
-#  self_introduction      :string
+#  provider               :string
+#  uid                    :string
 #

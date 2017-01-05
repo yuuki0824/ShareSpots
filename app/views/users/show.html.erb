@@ -1,4 +1,14 @@
 <h1><%= @user.name %></h1>
-<p>Find me in app/views/users/show.html.erb</p>
 
-<%= link_to "Edit", edit_user_registration_path(@user.id) %>
+<h3>user spots</h3>
+<p>
+  <% @spots.each do |spot| %>
+    <ul>
+      <li><%=link_to "#{spot.name}", spot_path(spot) %></li>
+    </ul>
+  <% end %>
+</p>
+
+<% if current_user.id == @user.id %>
+  <%= link_to "Profile Edit", edit_user_registration_path(@user.id) %>
+<% end %>
