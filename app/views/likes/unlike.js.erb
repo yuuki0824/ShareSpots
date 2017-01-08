@@ -1,0 +1,3 @@
+$('#like-form-<%= @spot.id %>').html("<%=j render 'spots/like', spot: @spot %>");
+
+$('#like-count-<%= @spot.id %>').html("<%= @spot.like_users.count %>");

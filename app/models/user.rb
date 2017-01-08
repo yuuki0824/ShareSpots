@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :spots
-  has_one :profile, dependent: :destroy
+  has_many :spots, dependent: :destroy
+  has_one  :profile, dependent: :destroy
+  has_many :likes
+  has_many :like_spots, through: :likes, source: :spot
   has_many :following_relationships, class_name: "Relationship",
                                      foreign_key: "follower_id",
                                      dependent: :destroy
@@ -75,6 +77,10 @@ class User < ActiveRecord::Base
   #あるユーザーをフォローしているかどうか
   def following?(other_user)
     following_users.include?(other_user)
+  end
+  
+  def favorite(user)
+    favorite_spots.find_or_create_by(user_id: user.id)
   end
 
 end

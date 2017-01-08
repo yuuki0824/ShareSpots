@@ -5,8 +5,14 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
   get 'about' => 'static_pages#about'
   #get 'users/:id', to: 'users#show', as: "user"
+  post 'like/:spot_id', to: 'likes#like', as: 'like'
+  delete 'unlike/:spot_id', to: 'likes#unlike', as: 'unlike'
   resources :users
-  resources :spots
+  #member
+  # get :followings, :followers, :like_posts
+  resources :spots do
+    resource :likes, only: [:create, :destroy]
+  end
   resources :relationships, only: [:create,:destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

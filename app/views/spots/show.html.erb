@@ -21,6 +21,11 @@
               <%= link_to "削除", spot_path(@spot.id), method: :delete, data: {confirm: "You Sure?"} %>
             <% end %>
           </p>
+          <p>
+            <% if current_user != @spot.user %>
+              <%= render 'like_form', spot: @spot %>
+            <% end %>
+          </p>
         </span>
       </div>
       <div class="col-md-8">

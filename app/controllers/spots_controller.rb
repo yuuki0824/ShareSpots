@@ -24,6 +24,11 @@ class SpotsController < ApplicationController
       marker.json(name: spot.name)
     end
   end
+    
+  def like_users
+    @spot = Spot.find(params[:id])
+    @users = @spot.like_users
+  end
   
   def edit
     @spot = Spot.find(params[:id])

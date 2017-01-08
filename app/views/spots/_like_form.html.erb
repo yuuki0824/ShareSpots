@@ -1,0 +1,10 @@
+<span id="like-form-<%= spot.id %>">
+  <% if spot.like?(current_user) %>
+    <%= render 'spots/unlike', spot: spot %>
+  <% else %>
+    <%= render 'spots/like', spot: spot %>
+  <% end %>
+</span>
+<span id="like-count-<%= spot.id %>">
+  <%= link_to spot.like_users.count, "#"  %>
+</span>likes
