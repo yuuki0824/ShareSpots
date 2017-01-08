@@ -1,5 +1,5 @@
 class SpotsController < ApplicationController
-  before_action :user_signed_in?, only: [:create]
+  before_action :user_signed_in?, only: [:create, :update]
   
   def index
     @spots = Spot.all.order(created_at: :desc)
@@ -24,6 +24,21 @@ class SpotsController < ApplicationController
       marker.json(name: spot.name)
     end
   end
+  
+  def edit
+    @spot = Spot.find(params[:id])
+  end
+  
+  def update
+    @spot = Spot.find(params[:id])
+    if @spot.update(spot_params)
+      flash[:success] = "update spot"
+      redirect_to @spot
+    else
+      render 'edit'
+    end
+  end
+    
   
   def destroy
     @spot = current_user.spots.find_by(id: params[:id])

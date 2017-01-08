@@ -1,5 +1,10 @@
 <h1><%= @user.name %></h1>
 
+<%= render 'follow_form' if user_signed_in? %>
+
+<% if @user.profile %>
+  <%= @user.profile.birthplace %>
+<% end %>
 <h3>user spots</h3>
 <p>
   <% @spots.each do |spot| %>
@@ -10,5 +15,5 @@
 </p>
 
 <% if current_user.id == @user.id %>
-  <%= link_to "Profile Edit", edit_user_registration_path(@user.id) %>
+  <%= link_to "Profile Edit", edit_user_path(@user) %>
 <% end %>

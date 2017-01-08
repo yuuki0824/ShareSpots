@@ -1,0 +1,32 @@
+<h1>User edit</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.fields_for :profile, @user.profile do |pf| %>
+    <div class="field">
+      <%= pf.label :age %>
+      <%= pf.number_field :age %>
+    </div>
+    
+    <div class="field">
+      <%= pf.label :birthday %>
+      <%= pf.date_select(
+            :birthday,
+            start_year: 1930,
+            end_year: (Time.now.year - 18),
+            default: Date.new(1989,1,1)) %>
+    </div>
+    
+    <div class="field">
+      <%= pf.label :birthplace %>
+      <%= pf.text_field :birthplace %>
+    </div>
+    
+    <div class="field">
+      <%= pf.label :self_introducation %>
+      <%= pf.text_area :self_introducation %>
+    </div>
+  <% end %>
+    
+  <%= f.submit %>
+<% end %>
+ 

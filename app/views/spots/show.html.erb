@@ -17,6 +17,7 @@
           
           <p>
             <% if current_user == @spot.user %>
+              <%= link_to "編集", edit_spot_path(@spot.id) %>
               <%= link_to "削除", spot_path(@spot.id), method: :delete, data: {confirm: "You Sure?"} %>
             <% end %>
           </p>
