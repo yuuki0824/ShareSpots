@@ -1,7 +1,7 @@
 <h1>User edit</h1>
 
 <%= form_for @user do |f| %>
-  <%= f.fields_for :profile, @user.profile do |pf| %>
+  <%= f.fields_for :profile, @profile do |pf| %>
     <div class="field">
       <%= pf.label :age %>
       <%= pf.number_field :age %>

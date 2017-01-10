@@ -7,9 +7,12 @@ Rails.application.routes.draw do
   #get 'users/:id', to: 'users#show', as: "user"
   post 'like/:spot_id', to: 'likes#like', as: 'like'
   delete 'unlike/:spot_id', to: 'likes#unlike', as: 'unlike'
-  resources :users
-  #member
-  # get :followings, :followers, :like_posts
+  resources :profiles, only:[:new,:create,:edit, :update]
+  resources :users, only:[:index, :show] do
+    member do
+      get :followings, :followers, :like_spots
+    end
+  end
   resources :spots do
     resource :likes, only: [:create, :destroy]
   end

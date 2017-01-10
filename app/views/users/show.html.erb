@@ -15,5 +15,9 @@
 </p>
 
 <% if current_user.id == @user.id %>
-  <%= link_to "Profile Edit", edit_user_path(@user) %>
+  <% if @user.profile %>
+    <%= link_to "Profie Edit", edit_profile_path(@profile) %>
+  <% else%>
+    <%= link_to "Profile Add", new_profile_path(@profile) %>
+  <% end %>
 <% end %>

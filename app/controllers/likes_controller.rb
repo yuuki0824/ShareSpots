@@ -10,7 +10,6 @@ class LikesController < ApplicationController
     @spot = Spot.find(params[:spot_id])
     like = current_user.likes.find_by(spot_id: @spot.id)
     like.destroy
-    #redirect_to :back
     render 'unlike'
   end
 end
