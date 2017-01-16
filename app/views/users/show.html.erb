@@ -1,23 +1,49 @@
-<h1><%= @user.name %></h1>
+<div class="row">
+  <h1><%= @user.name %></h1>
+  <p><%= render 'follow_form' if user_signed_in? %></p>
+  
+  <div class="user-info col-md-4">
+    <div class="panel panel-info">
+      <h3 class="panel-heading">Profile</h3>
+      <% if @user.profile %>
+        <ul class="panel-body user-profile">
+          <li><strong>年齢</strong> : <%= @user.profile.age %>歳</li>
+          <li><strong>誕生日</strong> : <%= @user.profile.birthday %></li>
+          <li><strong>出身地</strong> : <%= @user.profile.birthplace %></li>
+          <li>
+            <strong>-自己紹介-</strong><br>
+            <%= @user.profile.self_introducation %>
+          </li>
+        </ul>
+      <% end %>
+      <%= render 'stat' %>
+      
+      <% if current_user.id == @user.id %>
+        <% if @user.profile.nil? %>
+          <%= link_to "プロフィール作成", new_profile_path %>
+        <% else %>
+          <%= link_to "プロフィール編集", edit_profile_path %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="user-spots col-md-8">
+    <div class="panel panel-success">
+      <h3 class="panel-heading">user spots</h3>
+      <div>
+        <% if @spots.present? %>
+          <% @spots.each do |spot| %>
+            <ul>
+              <li><%=link_to "#{spot.name}", spot_path(spot) %></li>
+            </ul>
+          <% end %>
+        <% else %>
+          <p>まだ投稿がありません。</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+    
 
-<%= render 'follow_form' if user_signed_in? %>
-
-<% if @user.profile %>
-  <%= @user.profile.birthplace %>
-<% end %>
-<h3>user spots</h3>
-<p>
-  <% @spots.each do |spot| %>
-    <ul>
-      <li><%=link_to "#{spot.name}", spot_path(spot) %></li>
-    </ul>
-  <% end %>
-</p>
-
-<% if current_user.id == @user.id %>
-  <% if @user.profile %>
-    <%= link_to "Profie Edit", edit_profile_path(@profile) %>
-  <% else%>
-    <%= link_to "Profile Add", new_profile_path(@profile) %>
-  <% end %>
-<% end %>

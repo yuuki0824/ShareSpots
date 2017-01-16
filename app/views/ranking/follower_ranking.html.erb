@@ -1,0 +1,20 @@
+<div id="ranking">
+  <div class="page-title">
+    <h1><%= @title %></h1>
+  </div>
+  
+  <div class="container-inner inner-default clearfix">
+    <% @follower.each.with_index(1) do |fuser, i| %>
+      <div class="rank">
+        <div class="number">
+          <%= "#{i}位" %>
+        </div>
+
+        <div class="spot-title">
+          <%=link_to "#{fuser.name}", user_path(fuser.id) %>
+        </div>
+      </div>
+    <% end %>
+      
+  </div>
+</div>

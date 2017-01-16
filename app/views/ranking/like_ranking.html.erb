@@ -1,0 +1,26 @@
+<div id="ranking">
+  <div class="page-title">
+    <h1><%= @title %></h1>
+  </div>
+  
+  <div class="container-inner inner-default clearfix">
+    <% @spots.each.with_index(1) do |spot, i| %>
+      <div class="rank">
+        <div class="number">
+          <%= "#{i}位" %>
+        </div>
+        <div class="image">
+          <% if spot.image.present? %>
+            <%= image_tag(spot.image, alt: spot.name, style: "max-height:200px; max-width: 200px;") %>
+          <% else %>
+            <%= image_tag("no-image.png", alt: spot.name) %>
+          <% end %>
+        </div>
+        <div class="spot-title">
+          <%=link_to "#{spot.name}", spot_path(spot.id) %>
+        </div>
+      </div>
+    <% end %>
+      
+  </div>
+</div>

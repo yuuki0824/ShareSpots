@@ -1,0 +1,20 @@
+<section class="stats">
+  <a href="<%= followings_user_path(@user) %>">
+    <strong id="following" class="stat">
+      <%= @user.following_users.count %>
+    </strong>
+    following
+  </a>
+  <a href="<%= followers_user_path(@user) %>">
+    <strong id="followers" class="stat">
+      <%= @user.follower_users.count %>
+    </strong>
+    followers
+  </a>
+  <a href="<%= like_spots_user_path(@user) %>">
+    <strong id="user-likes" class="stat">
+      <%= @user.likes.count %>
+    </strong>
+    likes
+  </a>
+</section>

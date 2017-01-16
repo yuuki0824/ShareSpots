@@ -1,3 +1,41 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-info h3.panel-heading {
+  margin: 0;
+}
+
+.user-spots h3.panel-heading {
+  margin: 0;
+}
+
+
+#follow_form .btn-primary {
+  width: 33%;
+}
+.user-info ul.user-profile li {
+  margin:5px 0;
+}
+
+
+
+.stats {
+  padding-left: 5px;
+  a {
+    float: left;
+    border-left: 1px solid #cccccc;
+    color: gray;
+    padding: 0 10px;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  strong {
+    display: block;
+  }
+}

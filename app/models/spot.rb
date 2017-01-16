@@ -16,7 +16,7 @@
 
 class Spot < ActiveRecord::Base
   belongs_to :user
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: :user
   geocoded_by :address
   after_validation :geocode
