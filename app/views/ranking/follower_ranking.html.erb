@@ -7,12 +7,17 @@
     <% @follower.each.with_index(1) do |fuser, i| %>
       <div class="rank">
         <div class="number">
-          <%= "#{i}位" %>
+          <strong><%= "#{i}位" %></strong>
         </div>
 
-        <div class="spot-title">
-          <%=link_to "#{fuser.name}", user_path(fuser.id) %>
-        </div>
+        <ul class="users">
+          <li>
+            <%= link_to user_path(fuser.id) do %>
+              <%= gravatar_for fuser %>
+              <%= fuser.name %>
+              <% end %>
+          </li>
+        </ul>
       </div>
     <% end %>
       

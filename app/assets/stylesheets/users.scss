@@ -2,8 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .user-info h3.panel-heading {
   margin: 0;
+}
+
+.user-profile .user-info-gravatar img.gravatar{
+  max-width: 20px;
+  max-height: 20px;
 }
 
 .user-spots h3.panel-heading {
@@ -11,14 +17,16 @@
 }
 
 
+
 #follow_form .btn-primary {
+  width: 33%;
+}
+#follow_form .btn{
   width: 33%;
 }
 .user-info ul.user-profile li {
   margin:5px 0;
 }
-
-
 
 .stats {
   padding-left: 5px;
@@ -38,4 +46,18 @@
   strong {
     display: block;
   }
+}
+
+ul li.user-spot{
+  padding: 3px 0;
+}
+
+/* follower following  */
+ul.users li {
+  padding: 5px 0;
+  border-bottom: 1px solid #c8c8c8;
+}
+ul.users li img {
+  width: 50px;
+  height: 50px;
 }

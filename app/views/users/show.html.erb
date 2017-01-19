@@ -1,41 +1,28 @@
 <div class="row">
-  <h1><%= @user.name %></h1>
+  <h1>
+    <%= gravatar_for @user %>
+    <%= @user.name %>
+  </h1>
   <p><%= render 'follow_form' if user_signed_in? %></p>
   
   <div class="user-info col-md-4">
-    <div class="panel panel-info">
-      <h3 class="panel-heading">Profile</h3>
-      <% if @user.profile %>
-        <ul class="panel-body user-profile">
-          <li><strong>年齢</strong> : <%= @user.profile.age %>歳</li>
-          <li><strong>誕生日</strong> : <%= @user.profile.birthday %></li>
-          <li><strong>出身地</strong> : <%= @user.profile.birthplace %></li>
-          <li>
-            <strong>-自己紹介-</strong><br>
-            <%= @user.profile.self_introducation %>
-          </li>
-        </ul>
-      <% end %>
-      <%= render 'stat' %>
-      
-      <% if current_user.id == @user.id %>
-        <% if @user.profile.nil? %>
-          <%= link_to "プロフィール作成", new_profile_path %>
-        <% else %>
-          <%= link_to "プロフィール編集", edit_profile_path %>
-        <% end %>
-      <% end %>
-    </div>
+    <%= render 'user_info' %>
   </div>
-  
   <div class="user-spots col-md-8">
     <div class="panel panel-success">
       <h3 class="panel-heading">user spots</h3>
       <div>
+        <p><%= link_to "New Spot", new_spot_path %></p>
         <% if @spots.present? %>
           <% @spots.each do |spot| %>
             <ul>
-              <li><%=link_to "#{spot.name}", spot_path(spot) %></li>
+              <li class="user-spot">
+                <%= link_to spot_path(spot) do %>
+                  <%= image_tag spot.image.url, id: "spot-img", style: "max-width: 100px; max-heiht: 100px" %>
+                  <%= spot.name %>
+                <% end %>
+                <%= spot.date %>
+              </li>
             </ul>
           <% end %>
         <% else %>

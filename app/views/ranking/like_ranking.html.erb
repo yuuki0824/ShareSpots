@@ -3,24 +3,34 @@
     <h1><%= @title %></h1>
   </div>
   
-  <div class="container-inner inner-default clearfix">
-    <% @spots.each.with_index(1) do |spot, i| %>
-      <div class="rank">
-        <div class="number">
-          <%= "#{i}位" %>
+  <div>
+    <div class="container-inner inner-default clearfix">
+      <% @spots.each.with_index(1) do |spot, i| %>
+        <div class="item-box">
+          <div class="number">
+            <%= "#{i}位" %>
+          </div>
+          <div class="item">
+            <%= link_to spot_path(spot.id) do %>
+              <div class="image">
+                <div class="img-wrap">
+                  <% if spot.image.present? %>
+                    <%= image_tag(spot.image, alt: spot.name, style: "max-height:270px; max-width: 270px; padding:5px 0;") %>
+                  <% else %>
+                    <%= image_tag("no-image.png", alt: spot.name) %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="detail">
+                <div class="spot-title">
+                  <%=spot.name%>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
-        <div class="image">
-          <% if spot.image.present? %>
-            <%= image_tag(spot.image, alt: spot.name, style: "max-height:200px; max-width: 200px;") %>
-          <% else %>
-            <%= image_tag("no-image.png", alt: spot.name) %>
-          <% end %>
-        </div>
-        <div class="spot-title">
-          <%=link_to "#{spot.name}", spot_path(spot.id) %>
-        </div>
-      </div>
-    <% end %>
-      
+      <% end %>
+        
+    </div>
   </div>
 </div>

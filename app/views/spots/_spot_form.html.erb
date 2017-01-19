@@ -2,16 +2,13 @@
   <%= form_for @spot do |f| %>
     <div class="field">
       <%= f.label :name  %>
-      <%= f.text_field :name, autofocus: true %>
+      <%= f.text_field :name %>
     </div>
     
     <div class="field">
       <div class='input-group date datepicker'>
         <%= f.label :date %>
-        <%= f.text_field :date, class: 'form-control' %>
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
-        </span>
+        <%= f.date_field :date %>
       </div>
     </div>
     

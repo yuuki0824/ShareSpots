@@ -1,0 +1,25 @@
+<div class="panel panel-info">
+  <h3 class="panel-heading">Profile</h3>
+  <p class="user-profile"><strong>名前</strong> :<span class="user-info-gravatar"><%= gravatar_for @user %></span> <%= @user.name %></p>
+  <% if @user.profile %>
+    <ul class="panel-body user-profile">
+      <li><strong>年齢</strong> : <%= @user.profile.age %>歳</li>
+      <li><strong>誕生日</strong> : <%= @user.profile.birthday %></li>
+      <li><strong>出身地</strong> : <%= @user.profile.birthplace %></li><br>
+      <li>
+        <strong>-自己紹介-</strong><br>
+        <%= @user.profile.self_introducation %>
+      </li>
+    </ul>
+  <% end %>
+  <%= render 'stat' %>
+  
+  <% if current_user.id == @user.id %>
+    <% if @user.profile.nil? %>
+      <%= link_to "プロフィール作成", new_profile_path %>
+    <% else %>
+      <%= link_to "プロフィール編集", edit_profile_path %>
+    <% end %>
+  <% end %>
+</div>
+  

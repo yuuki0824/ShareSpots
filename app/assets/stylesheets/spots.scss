@@ -2,12 +2,37 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-.spot-show {
+#spot-img {
+  max-width: 100px;
+  max-height: 100px;
+}
+.spot-title {
   margin: 15px 0 50px 0;
 }
 
 .spot-item .image #img{
   max-width: 450px;
   max-height: 450px;
+}
+
+p.spot-user {
+  font-size: 12px;
+}
+
+ul.spot-guide li{
+  padding: 5px 0;
+  border-bottom: 1px solid #c8c8c8;
+}
+
+.spot-list li{
+  padding: 5px 0;
+}
+
+p.spot-user span.spot-user-gravatar img.gravatar {
+  max-width: 20px;
+  max-height: 20px;
+}
+
+#map {
+  margin: 30px 0 0 0;
 }

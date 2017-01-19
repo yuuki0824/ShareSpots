@@ -21,6 +21,9 @@ class Spot < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode
   validates :user_id, presence: true
+  validates :name, presence: true
+  validates :date, presence: true
+  validates :address, presence: true
   validates :description, presence: true
   
   mount_uploader :image, ImageUploader

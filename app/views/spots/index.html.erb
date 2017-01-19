@@ -1,15 +1,24 @@
 <div class="row">
-  <h1>Spots</h1>
+  <h1><%= @title %></h1>
   
-  <div class="col-md-3"></div>
+  <div class="col-md-3">
+    <div class="spot-new">
+      <p>
+        Have you done the posting?<br>
+        <%= link_to 'new spot...', new_spot_path %>
+      </p>
+    </div>
+  </div>
   <div class="col-md-9">
     <% @spots.each do |spot| %>
-     <p class="spot-guide">
-       <%= link_to spot_path(spot.id) do %>
-         <%= image_tag spot.image.url, id: "img", style: "max-width: 100px; max-heiht: 100px" %>
-         <%= spot.name %>
-       <% end %>
-      </p>
+     <ul class="spot-guide">
+       <li>
+         <%= link_to spot_path(spot.id) do %>
+           <%= image_tag spot.image.url, id: "img", style: "max-width: 100px; max-heiht: 100px" %>
+           <%= spot.name %>
+         <% end %>
+       </li>
+     </ul>
     <% end %>
   </div>
 </div>

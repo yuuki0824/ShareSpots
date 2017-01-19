@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   
   def new
+    @title = "New Profile"
     @user = current_user
     @profile = @user.build_profile
   end
@@ -18,6 +19,7 @@ class ProfilesController < ApplicationController
   
 
   def edit
+    @title = "Profile edit"
     @user = current_user
     @profile = Profile.find_or_initialize_by(user_id: @user.id)
   end

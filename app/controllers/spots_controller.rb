@@ -1,8 +1,14 @@
 class SpotsController < ApplicationController
-  before_action :user_signed_in?, only: [:create, :update]
+  before_action :user_signed_in?, only: [:create, :update, :new]
   
   def index
+    @title = "Spots"
     @spots = Spot.all.order(created_at: :desc)
+  end
+  
+  def new
+    @title = "New Spot"
+    @spot = Spot.new
   end
   
   def create
@@ -11,12 +17,15 @@ class SpotsController < ApplicationController
       flash[:success] = "Spot created"
       redirect_to user_path(current_user)
     else
+      @spots = Spot.all.order(created_at: :desc)
+      flash[:danger] = "spot not add."
       render 'static_pages/home'
     end
   end
   
   def show
     @spot = Spot.find(params[:id])
+    @user = @spot.user
     @hash = Gmaps4rails.build_markers(@spot) do |spot, marker|
       marker.lat spot.latitude
       marker.lng spot.longitude

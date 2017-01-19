@@ -1,0 +1,12 @@
+<li class="spot-list">
+  <%= link_to spot_path(spot) do %>
+    <%= image_tag spot.image.url, id: "spot-img" %>
+    <%= spot.name %>
+  <% end %>
+  <span class="spot-user">
+    投稿者 : <%= link_to spot.user.name, user_path(spot.user) %>
+    date : <%= spot.date %>
+  </span>
+  
+  <%=  %>
+</li>

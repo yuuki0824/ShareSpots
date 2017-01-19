@@ -1,21 +1,70 @@
 <div id="Home">
   <div class="top">
-    <h1 class="top-word">
-      Spotを記録、探す、行く
-    </h1>
-    <p class="top-word">
-      自分の行った場所を記録して思い出に。<br>
-      多くの人でオススメしたい場所を共有。
-    </p>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-12">
-      <section class="spot_form">
-        <%= render 'spots/spot_form' %>
-      </section>
+    <div class="mask">
+      <div class="top-word">
+        <h1>Spotを記録、探す、行く</h1>
+        <p>
+          自分の行った場所を記録して思い出に。<br>
+        　多くの人でオススメしたい場所を共有。
+        </p>
+      </div>
     </div>
   </div>
+  
+  <% if user_signed_in? %>
+    <div class="row">
+      <div class="col-md-4">
+        <section class="spot_form">
+          <div class="panel panel-info">
+            <div class="panel-heading">New Spot Record</div>
+          </div>
+          <div class="panel-body">
+            <%= render 'spots/spot_form' %>
+          </div>
+        </section>
+      </div>
+      
+      <div class="col-md-8">
+        <section class="spot-feed">
+          <div class="panel panel-warning">
+            <div class="panel-heading">New arrival</div>
+            <div class="panel-body">
+              <ul class="spot-list">
+                <%= render @spots %>
+              </ul>
+              <%= link_to "more....", spots_path, style: "float: right; font-size: 18px;" %>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="content">
+        <div class="col-md-4 content-item">
+          <h3 class="label label-info">記録</h3>
+          <p>
+            あなたが行った場所を思い出に残すため、<br>
+            多くの人に知ってもらうために記録に残しましょう。
+          </p>
+        </div>
+        <div class="col-md-4 content-item">
+          <h3 class="label label-success">探す</h3>
+          <p>
+            旅先でどこへ行こうと迷う時、ShareSpotsで<br>
+            検索してみて行きたい場所を探しましょう。
+          </p>
+        </div>
+        <div class="col-md-4 content-item">
+          <h3 class="label label-warning">行く</h3>
+          <p>
+            実際にShareSpotsで調べた場所へ行ってみましょう。<br>
+            新しい思い出、新しい出会いがあるかもしれません。
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 
