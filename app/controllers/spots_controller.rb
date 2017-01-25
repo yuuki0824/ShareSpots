@@ -1,9 +1,10 @@
+require 'pp'
 class SpotsController < ApplicationController
   before_action :user_signed_in?, only: [:create, :update, :new]
   
   def index
     @title = "Spots"
-    @spots = Spot.all.order(created_at: :desc)
+    @spots = Spot.all.order(created_at: :desc).page(params[:page]).per(10)
   end
   
   def new
@@ -39,6 +40,31 @@ class SpotsController < ApplicationController
     @users = @spot.like_users
   end
   
+  def image_create
+    @spot = current_user.spots.build(spot_params)
+    image_data = Magick::Image.read(@spot.image.file.file)[0]
+    if image_data.get_exif_by_entry('DateTime')[1] != nil
+      @spot.date = image_data.get_exif_by_entry('DateTime')[0][1].split(',')[0].gsub(/:/,'/')
+      #写真から緯度経度の中輸出
+      exif_lat = image_data.get_exif_by_entry('GPSLatitude')[0][1].to_s.split(',').map(&:strip)
+      exif_lng = image_data.get_exif_by_entry('GPSLongitude')[0][1].to_s.split(',').map(&:strip)
+      @spot.latitude = exif_lat.present? ? (Rational(exif_lat[0]) + Rational(exif_lat[1])/60 + Rational(exif_lat[2])/3600).to_f : nil
+      @spot.longitude = exif_lng.present? ? (Rational(exif_lng[0]) + Rational(exif_lng[1])/60 + Rational(exif_lng[2])/3600).to_f : nil
+  
+      if @spot.save
+        flash[:success] = "spot created!"
+        redirect_to user_path(current_user)
+      else
+        @spots = Spot.all.order(created_at: :desc)
+        render 'static_pages/home'
+      end
+    else
+      flash[:danger] = "not add spot / image not data"
+      render 'new'
+    end
+      
+  end
+
   def edit
     @spot = Spot.find(params[:id])
   end
@@ -65,7 +91,7 @@ class SpotsController < ApplicationController
   private
   
     def spot_params
-      params.require(:spot).permit(:name, :date, :address, :description, :image)
+      params.require(:spot).permit(:name, :date, :address, :description, :image, :image_cache)
     end
       
 end

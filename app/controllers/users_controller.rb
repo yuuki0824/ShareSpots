@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   
   def show
     @profile = Profile.find_or_initialize_by(user_id: @user.id)
-    @spots = @user.spots.order(created_at: :desc)
+    @spots = @user.spots.order(created_at: :desc).page(params[:page]).per(5)
   end
   
   def followings

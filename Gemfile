@@ -28,6 +28,9 @@ gem 'devise'
 gem 'omniauth-twitter'
 gem "gmaps4rails"
 gem "geocoder"
+gem 'pry-byebug', group: :development
+gem 'rmagick'
+gem 'kaminari'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'carrierwave'

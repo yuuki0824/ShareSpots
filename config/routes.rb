@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   delete 'unlike/:spot_id', to: 'likes#unlike', as: 'unlike'
   get 'like_ranking', to: 'ranking#like_ranking'
   get 'follower_ranking', to: 'ranking#follower_ranking'
+  post 'image_spot', to: 'spots#image_create', as: 'image_create'
   resources :profiles, only:[:new,:create,:edit, :update]
   resources :users, only:[:index, :show] do
     member do
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   end
   resources :spots do
     resource :likes, only: [:create, :destroy]
+    
   end
   resources :relationships, only: [:create,:destroy]
   # The priority is based upon order of creation: first created -> highest priority.

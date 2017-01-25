@@ -19,12 +19,11 @@ class Spot < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: :user
   geocoded_by :address
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :reverse_geocode
   after_validation :geocode
   validates :user_id, presence: true
   validates :name, presence: true
-  validates :date, presence: true
-  validates :address, presence: true
-  validates :description, presence: true
   
   mount_uploader :image, ImageUploader
   

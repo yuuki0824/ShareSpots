@@ -10,15 +10,11 @@
     </div>
   </div>
   <div class="col-md-9">
-    <% @spots.each do |spot| %>
-     <ul class="spot-guide">
-       <li>
-         <%= link_to spot_path(spot.id) do %>
-           <%= image_tag spot.image.url, id: "img", style: "max-width: 100px; max-heiht: 100px" %>
-           <%= spot.name %>
-         <% end %>
-       </li>
-     </ul>
-    <% end %>
+  <%= page_entries_info @spots %>
+   <ul class="spot-guide">
+     <%= render @spots %>
+     
+   </ul>
+   <%= paginate @spots %>
   </div>
 </div>

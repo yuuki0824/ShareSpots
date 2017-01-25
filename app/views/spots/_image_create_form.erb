@@ -1,0 +1,15 @@
+
+  <%= form_for @spot, url: image_create_path do |f| %>
+    <div class="field">
+      <%= f.label :name  %>
+      <%= f.text_field :name %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+    </div>
+    
+    <%= f.submit "add", class: "btn btn-primary" %>
+  <% end %> 
