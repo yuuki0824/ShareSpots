@@ -27,6 +27,8 @@ class SpotsController < ApplicationController
   def show
     @spot = Spot.find(params[:id])
     @user = @spot.user
+    @comments = @spot.comments.all
+    @comment = @spot.comments.build
     @hash = Gmaps4rails.build_markers(@spot) do |spot, marker|
       marker.lat spot.latitude
       marker.lng spot.longitude
@@ -93,5 +95,5 @@ class SpotsController < ApplicationController
     def spot_params
       params.require(:spot).permit(:name, :date, :address, :description, :image, :image_cache)
     end
-      
+    
 end

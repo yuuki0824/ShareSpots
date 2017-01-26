@@ -1,0 +1,17 @@
+<div class="comment-field">
+  <div class="comment-item">
+    <div class="col-md-6">
+      <%= render 'comments/comment_form' %>
+    </div>
+    <div class="col-md-6">
+      <div class="commet-field">
+        <% @comments.each do |comment| %>
+          <p>
+            <%= "#{comment.user.name} :  #{comment.body}" %>
+            <%= link_to "delete", spot_comment_path(spot, comment) ,method: :delete, data: {confirm: "You Sure?"}  %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

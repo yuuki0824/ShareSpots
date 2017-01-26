@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :spots, dependent: :destroy
+  has_many :comments
   has_one  :profile, dependent: :destroy
   has_many :likes
   has_many :like_spots, through: :likes, source: :spot
