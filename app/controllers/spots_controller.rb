@@ -26,6 +26,7 @@ class SpotsController < ApplicationController
   
   def show
     @spot = Spot.find(params[:id])
+    @spot.date = @spot.date.split[0]
     @user = @spot.user
     @comments = @spot.comments.all
     @comment = @spot.comments.build
@@ -45,7 +46,7 @@ class SpotsController < ApplicationController
   def image_create
     @spot = current_user.spots.build(spot_params)
     image_data = Magick::Image.read(@spot.image.file.file)[0]
-    if image_data.get_exif_by_entry('DateTime')[1] != nil
+    if image_data.get_exif_by_entry('DateTime')[0][1] != nil
       @spot.date = image_data.get_exif_by_entry('DateTime')[0][1].split(',')[0].gsub(/:/,'/')
       #写真から緯度経度の中輸出
       exif_lat = image_data.get_exif_by_entry('GPSLatitude')[0][1].to_s.split(',').map(&:strip)

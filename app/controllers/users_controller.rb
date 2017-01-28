@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   
   def like_spots
     @title = "Like Spots"
-    @spots = @user.like_spots
+    @spots = @user.like_spots.page(params[:page]).per(10)
     render "spots/index"
   end
   

@@ -34,6 +34,9 @@ gem 'kaminari'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'carrierwave'
+gem 'therubyracer' # javascript runtime。lessをコンパイルするために必要
+gem 'less-rails' # Railsでlessを使えるようにする。Bootstrapがlessで書かれているため
+gem 'twitter-bootstrap-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
